@@ -1,4 +1,11 @@
+
+
+
+
+import 'package:b_finder/Screens/details.dart';
 import 'package:flutter/material.dart';
+
+
 
 class Home extends StatefulWidget {
   @override
@@ -70,7 +77,7 @@ class _HomeState extends State<Home> {
               height:MediaQuery.of(context).size.height - 185.0,
               decoration: BoxDecoration(
                 color: Colors.white,
-                borderRadius: BorderRadius.only(topLeft: Radius.circular(75.0))
+                borderRadius: BorderRadius.only(topLeft: Radius.circular(75.0), bottomRight: Radius.circular(60.0))
               ),
               child: ListView(
                 primary: false,
@@ -102,7 +109,7 @@ class _HomeState extends State<Home> {
                           borderRadius: BorderRadius.circular(20.0)
                         ),
                         child: Center(
-                          child: Icon(Icons.search, color:Colors.black),
+                          child: Icon(Icons.search, color:Colors.black ),
                         ),
                       ),
                        Container(
@@ -123,6 +130,7 @@ class _HomeState extends State<Home> {
                        Container(
                         height: 65.0,
                         width: 100.0,
+                        
                         decoration: BoxDecoration(
                           border: Border.all(
                             color:Colors.grey,
@@ -139,7 +147,8 @@ class _HomeState extends State<Home> {
                             
                             color: Colors.white
                           ),
-                          )
+                          ),
+                          
                         ),
                       ),
                     ],
@@ -159,7 +168,14 @@ Widget _buildItem(String imgPath, String itemName, String price){
   return Padding(padding: EdgeInsets.only(left: 10.0, right: 10.0, top: 10.0),
   child: InkWell(
     onTap: (){
-      
+       BuildContext context;
+            Navigator.push(context,
+            MaterialPageRoute(
+        builder:(context) => Details(
+            imgPath:imgPath,itemName:itemName,itemPrice:price
+        )
+         ),);
+              // Navigator.pushNamed(context, '/');
     },
     child: Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -205,7 +221,7 @@ Widget _buildItem(String imgPath, String itemName, String price){
       icon: Icon(Icons.send),
       color: Colors.black,
       onPressed: (){
-
+       
       },
     )
       ],
