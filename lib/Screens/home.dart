@@ -86,6 +86,63 @@ class _HomeState extends State<Home> {
                       ],
                     ),
                   ),
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: <Widget>[
+                      Container(
+                        height: 65.0,
+                        width: 60.0,
+                        decoration: BoxDecoration(
+                          border: Border.all(
+                            color:Colors.grey,
+                            style: BorderStyle.solid,
+                            width:1.0
+                          ),
+                          borderRadius: BorderRadius.circular(20.0)
+                        ),
+                        child: Center(
+                          child: Icon(Icons.search, color:Colors.black),
+                        ),
+                      ),
+                       Container(
+                        height: 65.0,
+                        width: 60.0,
+                        decoration: BoxDecoration(
+                          border: Border.all(
+                            color:Colors.grey,
+                            style: BorderStyle.solid,
+                            width:1.0
+                          ),
+                          borderRadius: BorderRadius.circular(20.0)
+                        ),
+                        child: Center(
+                          child: Icon(Icons.shopping_cart, color:Colors.black),
+                        ),
+                      ),
+                       Container(
+                        height: 65.0,
+                        width: 100.0,
+                        decoration: BoxDecoration(
+                          border: Border.all(
+                            color:Colors.grey,
+                            style: BorderStyle.solid,
+                            width:1.0
+                          ),
+                          borderRadius: BorderRadius.circular(20.0),
+                          color: Colors.black,
+                          
+                        ),
+                        child: Center(
+                          child: Text('Checkout',
+                          style: TextStyle(
+                            
+                            color: Colors.white
+                          ),
+                          )
+                        ),
+                      ),
+                    ],
                   )
                 ],
               )
