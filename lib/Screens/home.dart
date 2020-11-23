@@ -88,8 +88,8 @@ class _HomeState extends State<Home> {
                     height: MediaQuery.of(context).size.height -300.0,
                     child: ListView(
                       children: <Widget>[
-                          _buildItem('assets/download1.jpg', 'Foods', '\$24.0'),
-                          _buildItem('assets/download2.jpg', 'Computer', '\$24.0'),
+                          _buildItem(context,'assets/download1.jpg', 'Foods', '\$24.0'),
+                          _buildItem(context,'assets/download2.jpg', 'Computer', '\$24.0'),
                       ],
                     ),
                   ),
@@ -164,11 +164,11 @@ class _HomeState extends State<Home> {
   }
 }
 
-Widget _buildItem(String imgPath, String itemName, String price){
+Widget _buildItem(BuildContext context,String imgPath, String itemName, String price){
   return Padding(padding: EdgeInsets.only(left: 10.0, right: 10.0, top: 10.0),
   child: InkWell(
     onTap: (){
-       BuildContext context;
+       
             Navigator.push(context,
             MaterialPageRoute(
         builder:(context) => Details(
