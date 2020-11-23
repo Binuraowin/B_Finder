@@ -88,8 +88,8 @@ class _HomeState extends State<Home> {
                     height: MediaQuery.of(context).size.height -300.0,
                     child: ListView(
                       children: <Widget>[
-                          _buildItem(context,'assets/download1.jpg', 'Foods', '\$24.0'),
-                          _buildItem(context,'assets/download2.jpg', 'Computer', '\$24.0'),
+                          _buildItem(context,'assets/download1.jpg', 'Foods', '\$24.0','This is the Description Or project this is need to 200 word text'),
+                          _buildItem(context,'assets/download2.jpg', 'Computer', '\$24.0','This is the Description Or project this is need to 200 word text'),
                       ],
                     ),
                   ),
@@ -164,7 +164,7 @@ class _HomeState extends State<Home> {
   }
 }
 
-Widget _buildItem(BuildContext context,String imgPath, String itemName, String price){
+Widget _buildItem(BuildContext context,String imgPath, String itemName, String price, String description){
   return Padding(padding: EdgeInsets.only(left: 10.0, right: 10.0, top: 10.0),
   child: InkWell(
     onTap: (){
@@ -172,7 +172,7 @@ Widget _buildItem(BuildContext context,String imgPath, String itemName, String p
             Navigator.push(context,
             MaterialPageRoute(
         builder:(context) => Details(
-            imgPath:imgPath,itemName:itemName,itemPrice:price
+            imgPath:imgPath,itemName:itemName,itemPrice:price,description:description
         )
          ),);
               // Navigator.pushNamed(context, '/');
