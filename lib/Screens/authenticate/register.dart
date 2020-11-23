@@ -23,7 +23,7 @@ class _RegisterState extends State<Register> {
     return Scaffold(
       backgroundColor: Colors.blue[100],
       appBar: AppBar(
-        backgroundColor: Colors.blue[300],
+        backgroundColor: Colors.transparent,
         elevation: 0.0,
         title: Text('Sign Up'),
           actions: <Widget>[
@@ -41,7 +41,7 @@ class _RegisterState extends State<Register> {
          decoration: BoxDecoration(
                 color: Colors.white,
 
-                borderRadius: BorderRadius.only(topLeft: Radius.circular(75.0), topRight: Radius.circular(60.0))
+                borderRadius: BorderRadius.only(topLeft: Radius.circular(200.0), topRight: Radius.circular(200.0))
               ),
               child: ListView(
                 primary: false,
