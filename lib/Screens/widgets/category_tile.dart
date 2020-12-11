@@ -19,7 +19,7 @@ final String id;
 
            Navigator.push(context,
             MaterialPageRoute(
-        builder:(context) =>SubCategoryPage(id: id,)
+        builder:(context) =>SubCategory(id: id,)
          ),);
 
         //     Navigator.push(context,
@@ -36,16 +36,13 @@ final String id;
         Container(
           child: Row(
             children: <Widget>[
+              Container(
+                child: Image.network(imagePath),
 
-//               Hero(tag: imagePath,
-//         child: Image.network(imagePath,
-//           fit: BoxFit.cover,
-//           height: 75.0,
-//           width: 75.0,
-//         )
-//
-//
-//         ),
+                height: 75.0,
+                width: 75.0,
+              ),
+
 
         SizedBox(width: 10.0),
         Column(
