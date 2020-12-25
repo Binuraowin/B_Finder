@@ -6,20 +6,34 @@ class DescriptionPage extends StatefulWidget {
   final String imageUrl;
   final double latitude;
   final double longitude;
+  final String providerName;
+  final int providerTel;
+  final int units;
+  final String description;
+  final double unitPrice;
+  final String productName;
 
 
-  const DescriptionPage({Key key, this.imageUrl, this.latitude, this.longitude}) : super(key: key);@override
-  _DescriptionPageState createState() => _DescriptionPageState(imageUrl,latitude,longitude);
+
+  const DescriptionPage({Key key, this.imageUrl, this.latitude, this.longitude, this.providerName, this.providerTel, this.units, this.description, this.unitPrice, this.productName}) : super(key: key);@override
+  _DescriptionPageState createState() => _DescriptionPageState(imageUrl,latitude,longitude,providerName,providerTel,units,description,unitPrice,productName);
 }
 
 class _DescriptionPageState extends State<DescriptionPage> {
   final String imageUrl;
   final double latitude;
   final double longitude;
+  final String providerName;
+  final int providerTel;
+  final int units;
+  final String description;
+  final double unitPrice;
+  final String productName;
+
   bool _isOpen = false;
   PanelController _panelController = PanelController();
 
-  _DescriptionPageState(this.imageUrl, this.latitude, this.longitude);
+  _DescriptionPageState(this.imageUrl, this.latitude, this.longitude, this.providerName, this.providerTel, this.units, this.description, this.unitPrice, this.productName);
 //  var _imageList = [
 //    'images/1.jpg',
 //    'images/2.jpeg',
@@ -137,7 +151,7 @@ class _DescriptionPageState extends State<DescriptionPage> {
           ),
 Container(
   child: Text(
-    'Description here '
+    description
   ),
 )
 //          GridView.builder(
@@ -177,7 +191,7 @@ Container(
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(30)),
               child: Text(
-                'VIEW PROFILE',
+                'Location',
                 style: TextStyle(
                   fontFamily: 'NimbusSanL',
                   fontSize: 12,
@@ -201,13 +215,13 @@ Container(
                   ? (MediaQuery.of(context).size.width - (2 * hPadding)) / 1.6
                   : double.infinity,
               child: FlatButton(
-                onPressed: () => print('Message tapped'),
+                onPressed: () => _launchPhone(providerTel),
                 color: Colors.blue,
                 textColor: Colors.white,
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(30)),
                 child: Text(
-                  'MESSAGE',
+                  'Call',
                   style: TextStyle(
                     fontFamily: 'NimbusSanL',
                     fontSize: 12,
@@ -227,19 +241,19 @@ Container(
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: <Widget>[
-        _infoCell(title: 'Projects', value: '1135'),
+        _infoCell(title: 'Units', value: units.toString()),
         Container(
           width: 1,
           height: 40,
           color: Colors.grey,
         ),
-        _infoCell(title: 'Hourly Rate', value: "\$65"),
-        Container(
-          width: 1,
-          height: 40,
-          color: Colors.grey,
-        ),
-        _infoCell(title: 'Location', value: 'Dusseldorf'),
+        _infoCell(title: 'Unit Price', value: unitPrice.toString()),
+//        Container(
+//          width: 1,
+//          height: 40,
+//          color: Colors.grey,
+//        ),
+//        _infoCell(title: 'Location', value: 'Dusseldorf'),
       ],
     );
   }
@@ -276,7 +290,7 @@ Container(
     return Column(
       children: <Widget>[
         Text(
-          'Aanika Johnson',
+            providerName,
           style: TextStyle(
             fontFamily: 'NimbusSanL',
             fontWeight: FontWeight.w700,
@@ -287,7 +301,7 @@ Container(
           height: 8,
         ),
         Text(
-          'Freelancer',
+          providerName,
           style: TextStyle(
             fontFamily: 'NimbusSanL',
             fontStyle: FontStyle.italic,
@@ -307,4 +321,12 @@ _launchURL(double lat, double lng) async {
     throw 'Could not launch $googleMapsUrl';
   }
 }
+_launchPhone(int number) async {
+  final String googleMapsUrl = "tel:$number";
 
+  if (await canLaunch(googleMapsUrl)) {
+    await launch(googleMapsUrl);
+  } else {
+    throw 'Could not launch $googleMapsUrl';
+  }
+}

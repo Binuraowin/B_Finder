@@ -90,6 +90,10 @@ class _ProductListPageState extends State<ProductListPage> {
                           unitPrice:snapshot.data[index].unitPrice,
                           latitude:snapshot.data[index].latitude,
                           longitude:snapshot.data[index].longitude,
+                          providerName:snapshot.data[index].providerName,
+                          providerTel:snapshot.data[index].providerTel ,
+                          units:snapshot.data[index].units ,
+                          description:snapshot.data[index].description ,
                         );
                       }
                   );

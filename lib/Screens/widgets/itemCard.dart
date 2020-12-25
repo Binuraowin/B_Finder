@@ -10,10 +10,15 @@ class ItemCard extends StatefulWidget {
  final double unitPrice;
  final double latitude;
  final double longitude;
+ final String providerName;
+ final int providerTel;
+ final int units;
+ final String description;
 
-  const ItemCard({Key key, this.id, this.imageUrl, this.name, this.unitPrice, this.latitude, this.longitude}) : super(key: key);
+
+  const ItemCard({Key key, this.id, this.imageUrl, this.name, this.unitPrice, this.latitude, this.longitude, this.providerName, this.providerTel, this.units, this.description}) : super(key: key);
   @override
-  _ItemCardState createState() => _ItemCardState(id,imageUrl,name,unitPrice,latitude,longitude);
+  _ItemCardState createState() => _ItemCardState(id,imageUrl,name,unitPrice,latitude,longitude,providerName,providerTel,units,description);
 }
 
 class _ItemCardState extends State<ItemCard> {
@@ -23,13 +28,17 @@ class _ItemCardState extends State<ItemCard> {
    final double unitPrice;
    final double latitude;
    final double longitude;
+   final String providerName;
+   final int providerTel;
+   final int units;
+   final String description;
 
   List colors = [Colors.blue, Colors.green, Colors.yellow];
 
   Random random = new Random();
    int j = 0;
 
-  _ItemCardState(this.id, this.imageUrl, this.name, this.unitPrice, this.latitude, this.longitude);
+  _ItemCardState(this.id, this.imageUrl, this.name, this.unitPrice, this.latitude, this.longitude, this.providerName, this.providerTel, this.units, this.description);
   @override
   void initState() {
     // TODO: implement initState
@@ -50,6 +59,12 @@ class _ItemCardState extends State<ItemCard> {
             imageUrl: imageUrl,
             latitude: latitude,
             longitude: longitude,
+            productName: name,
+            providerTel: providerTel,
+            units: units,
+            description: description,
+            unitPrice: unitPrice,
+            providerName: providerName,
           )),
 
 
