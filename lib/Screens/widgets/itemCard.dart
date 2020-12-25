@@ -8,10 +8,12 @@ class ItemCard extends StatefulWidget {
  final String imageUrl;
  final String name;
  final double unitPrice;
+ final double latitude;
+ final double longitude;
 
-  const ItemCard({Key key, this.id, this.imageUrl, this.name, this.unitPrice}) : super(key: key);
+  const ItemCard({Key key, this.id, this.imageUrl, this.name, this.unitPrice, this.latitude, this.longitude}) : super(key: key);
   @override
-  _ItemCardState createState() => _ItemCardState(id,imageUrl,name,unitPrice);
+  _ItemCardState createState() => _ItemCardState(id,imageUrl,name,unitPrice,latitude,longitude);
 }
 
 class _ItemCardState extends State<ItemCard> {
@@ -19,13 +21,15 @@ class _ItemCardState extends State<ItemCard> {
    final String imageUrl;
    final String name;
    final double unitPrice;
+   final double latitude;
+   final double longitude;
 
   List colors = [Colors.blue, Colors.green, Colors.yellow];
 
   Random random = new Random();
    int j = 0;
 
-  _ItemCardState(this.id, this.imageUrl, this.name, this.unitPrice);
+  _ItemCardState(this.id, this.imageUrl, this.name, this.unitPrice, this.latitude, this.longitude);
   @override
   void initState() {
     // TODO: implement initState
@@ -42,7 +46,11 @@ class _ItemCardState extends State<ItemCard> {
 
           context,
           // Create the SelectionScreen in the next step.
-          MaterialPageRoute(builder: (context) => DescriptionPage(imageUrl: imageUrl,)),
+          MaterialPageRoute(builder: (context) => DescriptionPage(
+            imageUrl: imageUrl,
+            latitude: latitude,
+            longitude: longitude,
+          )),
 
 
         );

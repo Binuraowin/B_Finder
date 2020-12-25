@@ -88,6 +88,8 @@ class _ProductListPageState extends State<ProductListPage> {
                           name: snapshot.data[index].name,
                           id: snapshot.data[index].listId ,
                           unitPrice:snapshot.data[index].unitPrice,
+                          latitude:snapshot.data[index].latitude,
+                          longitude:snapshot.data[index].longitude,
                         );
                       }
                   );

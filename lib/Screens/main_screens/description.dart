@@ -1,20 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class DescriptionPage extends StatefulWidget {
   final String imageUrl;
+  final double latitude;
+  final double longitude;
 
 
-  const DescriptionPage({Key key, this.imageUrl}) : super(key: key);@override
-  _DescriptionPageState createState() => _DescriptionPageState(imageUrl);
+  const DescriptionPage({Key key, this.imageUrl, this.latitude, this.longitude}) : super(key: key);@override
+  _DescriptionPageState createState() => _DescriptionPageState(imageUrl,latitude,longitude);
 }
 
 class _DescriptionPageState extends State<DescriptionPage> {
   final String imageUrl;
+  final double latitude;
+  final double longitude;
   bool _isOpen = false;
   PanelController _panelController = PanelController();
 
-  _DescriptionPageState(this.imageUrl);
+  _DescriptionPageState(this.imageUrl, this.latitude, this.longitude);
 //  var _imageList = [
 //    'images/1.jpg',
 //    'images/2.jpeg',
@@ -167,7 +172,7 @@ Container(
           visible: !_isOpen,
           child: Expanded(
             child: OutlineButton(
-              onPressed: () => _panelController.open(),
+              onPressed: () => _launchURL(latitude,longitude),
               borderSide: BorderSide(color: Colors.blue),
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(30)),
@@ -291,6 +296,15 @@ Container(
         ),
       ],
     );
+  }
+}
+_launchURL(double lat, double lng) async {
+  final String googleMapsUrl = "https://maps.google.com/?q=$lat,$lng";
+
+  if (await canLaunch(googleMapsUrl)) {
+    await launch(googleMapsUrl);
+  } else {
+    throw 'Could not launch $googleMapsUrl';
   }
 }
 
