@@ -290,7 +290,7 @@ Container(
     return Column(
       children: <Widget>[
         Text(
-            providerName,
+            productName,
           style: TextStyle(
             fontFamily: 'NimbusSanL',
             fontWeight: FontWeight.w700,
