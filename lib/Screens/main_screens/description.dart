@@ -130,6 +130,11 @@ class _DescriptionPageState extends State<DescriptionPage> {
               ],
             ),
           ),
+Container(
+  child: Text(
+    'Description here '
+  ),
+)
 //          GridView.builder(
 //            primary: false,
 //            shrinkWrap: true,
