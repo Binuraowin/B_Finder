@@ -34,7 +34,7 @@ class _SubCategoryPageState extends State<SubCategoryPage> {
                       itemBuilder: (context, index) {
                         return SubCategoryTile(
                           imageUrl: snapshot.data[index].imageUrl,
-                          subCategoryName: snapshot.data[index].subCategoryName,
+                          subCategoryName: snapshot.data[index].name,
                         );
                       }
                   );

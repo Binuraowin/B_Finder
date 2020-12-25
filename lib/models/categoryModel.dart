@@ -13,12 +13,9 @@ final String id;
     });
 factory CategoryModel.fromJson(Map<String, dynamic> json) {
   return CategoryModel(
-
     categoryName: json['Name'] ?? '',
     imagePath: json['imagePath'] ?? '',
     id: json['Id'] ?? '',
-
-
   );
 
 }
