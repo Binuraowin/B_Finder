@@ -65,10 +65,14 @@ class _DescriptionPageState extends State<DescriptionPage> {
       body: Stack(
         fit: StackFit.expand,
         children: <Widget>[
-          FractionallySizedBox(
+          Container(
+             child: IconButton(icon: Icon(Icons.arrow_back_rounded),),
+          ),
+          Container(
             alignment: Alignment.topCenter,
-            heightFactor: 0.7,
+//            heightFactor: 0.7,
             child: Container(
+
               decoration: BoxDecoration(
                 image: DecorationImage(
                   image: NetworkImage(imageUrl),

@@ -1,6 +1,7 @@
 
 import 'package:b_finder/Screens/widgets/categorySelectwidget.dart';
 import 'package:b_finder/Screens/widgets/itemCard.dart';
+import 'package:b_finder/models/categoryModel.dart';
 import 'package:b_finder/models/subCategoryModel.dart';
 import 'package:b_finder/services/database.dart';
 import 'package:flutter_svg/svg.dart';
@@ -12,14 +13,15 @@ class ProductListPage extends StatefulWidget {
 }
 
 class _ProductListPageState extends State<ProductListPage> {
-  String id = 'wQUQRzDTubHd8KwI2wLg';
+  String id ;
+  int selectedIndex = 0;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.white,
-        elevation: 0,
-        title: Text('Bfinder'),
+//      appBar: AppBar(
+//        backgroundColor: Colors.white,
+//        elevation: 0,
+//        title: Text('Bfinder'),
 //        leading: IconButton(
 //         icon: Ico,
 //          onPressed: () {},
@@ -43,10 +45,11 @@ class _ProductListPageState extends State<ProductListPage> {
 //          ),
 //          SizedBox(width: 20.0 / 2)
 //        ],
-      ),
+//      ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
+          SizedBox(height: 40.0,),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20.0),
             child: Text(
@@ -66,8 +69,31 @@ class _ProductListPageState extends State<ProductListPage> {
 //    id=catId;
 //    },
 //         ),
+    Padding(
+    padding: const EdgeInsets.symmetric(vertical: 20.0),
+    child: SizedBox(
+    height: 25,
+    child:StreamBuilder<List<CategoryModel>>(
+    stream: DatabaseService().getCategories(),
+    builder: (context, snapshot) {
+    return ListView.builder(
+    itemCount: snapshot.data.length,
+    scrollDirection: Axis.horizontal,
+    itemBuilder: (context, index) => buildCategory(
+    index,
+    snapshot.data[index].categoryName,
+    snapshot.data[index].id
+    )
+    );
+    },
+    ),
 
-         SlectedCategory(),
+
+
+    ),
+    ),
+
+//         SlectedCategory(),
           Expanded(
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20.0),
@@ -102,6 +128,38 @@ class _ProductListPageState extends State<ProductListPage> {
             ),
           ),
         ],
+      ),
+    );
+  }
+
+  Widget buildCategory(int index,String categoryName,String catId) {
+    return GestureDetector(
+      onTap: () {
+        setState(() {
+          selectedIndex = index;
+          id= catId;
+        });
+      },
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 20),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            Text(
+              categoryName,
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+                color: selectedIndex == index ?  Color(0xFF535353) : Color(0xFF535353),
+              ),
+            ),
+            Container(
+              margin: EdgeInsets.only(top: 20 / 4), //top padding 5
+              height: 2,
+              width: 30,
+              color: selectedIndex == index ? Colors.black : Colors.transparent,
+            )
+          ],
+        ),
       ),
     );
   }
