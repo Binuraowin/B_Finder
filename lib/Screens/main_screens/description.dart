@@ -37,30 +37,6 @@ class _DescriptionPageState extends State<DescriptionPage> {
   PanelController _panelController = PanelController();
 
   _DescriptionPageState(this.imageUrl, this.latitude, this.longitude, this.providerName, this.providerTel, this.units, this.description, this.unitPrice, this.productName, this.date);
-//  var _imageList = [
-//    'images/1.jpg',
-//    'images/2.jpeg',
-//    'images/3.jpg',
-//    'images/4.jpeg',
-//    'images/5.jpg',
-//    'images/6.jpg',
-//    'images/7.jpeg',
-//    'images/8.jpg',
-//    'images/9.jpg',
-//    'images/10.jpeg',
-//    'images/11.png',
-//    'images/12.jpeg',
-//    'images/13.jpg',
-//    'images/14.jpg',
-//    'images/15.jpg',
-//    'images/16.jpeg',
-//    'images/17.jpg',
-//    'images/18.jpeg',
-//  ];
-
-  /// **********************************************
-  /// LIFE CYCLE METHODS
-  /// **********************************************
 
   @override
   Widget build(BuildContext context) {
@@ -130,9 +106,7 @@ class _DescriptionPageState extends State<DescriptionPage> {
     );
   }
 
-  /// **********************************************
-  /// WIDGETS
-  /// **********************************************
+
 
   /// Panel Body
   SingleChildScrollView _panelBody(ScrollController controller) {
@@ -156,17 +130,16 @@ class _DescriptionPageState extends State<DescriptionPage> {
               ],
             ),
           ),
-Container(
-  child: Text(
-    description
-  ),
-),
-    Container(
-    child: Text(
-    DateFormat.yMMMd().format(date)
-    ),
-    ),
-
+          Container(
+            child: Text(
+                DateFormat.yMMMd().format(date)
+            ),
+          ),
+          Container(
+            child: Text(
+                description
+            ),
+          ),
 //          GridView.builder(
 //            primary: false,
 //            shrinkWrap: true,
