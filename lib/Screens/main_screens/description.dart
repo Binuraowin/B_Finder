@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:intl/intl.dart';
 
 class DescriptionPage extends StatefulWidget {
   final String imageUrl;
@@ -12,11 +13,12 @@ class DescriptionPage extends StatefulWidget {
   final String description;
   final double unitPrice;
   final String productName;
+  final DateTime date;
 
 
 
-  const DescriptionPage({Key key, this.imageUrl, this.latitude, this.longitude, this.providerName, this.providerTel, this.units, this.description, this.unitPrice, this.productName}) : super(key: key);@override
-  _DescriptionPageState createState() => _DescriptionPageState(imageUrl,latitude,longitude,providerName,providerTel,units,description,unitPrice,productName);
+  const DescriptionPage({Key key, this.imageUrl, this.latitude, this.longitude, this.providerName, this.providerTel, this.units, this.description, this.unitPrice, this.productName, this.date}) : super(key: key);@override
+  _DescriptionPageState createState() => _DescriptionPageState(imageUrl,latitude,longitude,providerName,providerTel,units,description,unitPrice,productName,date);
 }
 
 class _DescriptionPageState extends State<DescriptionPage> {
@@ -29,11 +31,12 @@ class _DescriptionPageState extends State<DescriptionPage> {
   final String description;
   final double unitPrice;
   final String productName;
+  final DateTime date;
 
   bool _isOpen = false;
   PanelController _panelController = PanelController();
 
-  _DescriptionPageState(this.imageUrl, this.latitude, this.longitude, this.providerName, this.providerTel, this.units, this.description, this.unitPrice, this.productName);
+  _DescriptionPageState(this.imageUrl, this.latitude, this.longitude, this.providerName, this.providerTel, this.units, this.description, this.unitPrice, this.productName, this.date);
 //  var _imageList = [
 //    'images/1.jpg',
 //    'images/2.jpeg',
@@ -157,7 +160,13 @@ Container(
   child: Text(
     description
   ),
-)
+),
+    Container(
+    child: Text(
+    DateFormat.yMMMd().format(date)
+    ),
+    ),
+
 //          GridView.builder(
 //            primary: false,
 //            shrinkWrap: true,

@@ -120,6 +120,7 @@ class _ProductListPageState extends State<ProductListPage> {
                           providerTel:snapshot.data[index].providerTel ,
                           units:snapshot.data[index].units ,
                           description:snapshot.data[index].description ,
+                          date: snapshot.data[index].date,
                         );
                       }
                   );
