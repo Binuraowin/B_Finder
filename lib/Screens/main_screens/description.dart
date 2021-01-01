@@ -14,11 +14,12 @@ class DescriptionPage extends StatefulWidget {
   final double unitPrice;
   final String productName;
   final DateTime date;
+  final String address;
 
 
 
-  const DescriptionPage({Key key, this.imageUrl, this.latitude, this.longitude, this.providerName, this.providerTel, this.units, this.description, this.unitPrice, this.productName, this.date}) : super(key: key);@override
-  _DescriptionPageState createState() => _DescriptionPageState(imageUrl,latitude,longitude,providerName,providerTel,units,description,unitPrice,productName,date);
+  const DescriptionPage({Key key, this.imageUrl, this.latitude, this.longitude, this.providerName, this.providerTel, this.units, this.description, this.unitPrice, this.productName, this.date, this.address}) : super(key: key);@override
+  _DescriptionPageState createState() => _DescriptionPageState(imageUrl,latitude,longitude,providerName,providerTel,units,description,unitPrice,productName,date,address);
 }
 
 class _DescriptionPageState extends State<DescriptionPage> {
@@ -32,11 +33,12 @@ class _DescriptionPageState extends State<DescriptionPage> {
   final double unitPrice;
   final String productName;
   final DateTime date;
+  final String address;
 
   bool _isOpen = false;
   PanelController _panelController = PanelController();
 
-  _DescriptionPageState(this.imageUrl, this.latitude, this.longitude, this.providerName, this.providerTel, this.units, this.description, this.unitPrice, this.productName, this.date);
+  _DescriptionPageState(this.imageUrl, this.latitude, this.longitude, this.providerName, this.providerTel, this.units, this.description, this.unitPrice, this.productName, this.date, this.address);
 
   @override
   Widget build(BuildContext context) {
@@ -138,9 +140,16 @@ class _DescriptionPageState extends State<DescriptionPage> {
           ),
           Container(
             child: Text(
+                address,style: TextStyle(fontWeight: FontWeight.w400),
+            ),
+          ),
+          SizedBox(height: 40.0,),
+          Container(
+            child: Text(
                 description
             ),
           ),
+
 //          GridView.builder(
 //            primary: false,
 //            shrinkWrap: true,

@@ -97,6 +97,7 @@ class PostContainer extends StatelessWidget {
                 date: date,
                 categoryId: categoryId,
                 id: id,
+                address: address,
 
               ),
             )
@@ -173,8 +174,9 @@ class _postStats extends StatefulWidget {
  final DateTime date;
  final String categoryId;
  final String id;
+ final String address;
 
- _postStats({Key key, this.likes, this.views, this.imageUrl, this.latitude, this.longitude, this.providerName, this.providerTel, this.units, this.description, this.unitPrice, this.productName, this.date, this.categoryId, this.id}) : super(key: key);
+ _postStats({Key key, this.likes, this.views, this.imageUrl, this.latitude, this.longitude, this.providerName, this.providerTel, this.units, this.description, this.unitPrice, this.productName, this.date, this.categoryId, this.id, this.address}) : super(key: key);
 
   @override
   __postStatsState createState() => __postStatsState();
@@ -270,6 +272,7 @@ class __postStatsState extends State<_postStats> {
                     unitPrice: widget.unitPrice,
                     providerName: widget.providerName,
                     date: widget.date,
+                    address: widget.address,
                   )),
 
 
