@@ -83,6 +83,10 @@ Stream<List<Product>> get products{
     return _db.collection('categories').doc(docId).collection('subCategories').snapshots().map((snapshot) =>
         snapshot.docs.map((doc) => SubCategoryModel.fromJson(doc.data())).toList());
   }
+  Stream<List<SubCategoryModel>> getSortedSubCategories(docId,district) {
+    return _db.collection('categories').doc(docId).collection('subCategories').where('district',isEqualTo: '$district').snapshots().map((snapshot) =>
+        snapshot.docs.map((doc) => SubCategoryModel.fromJson(doc.data())).toList());
+  }
 
   void incrementlike(categoryId,docid){
     FirebaseFirestore.instance.collection('categories').doc(categoryId).collection('subCategories').doc(docid).update({

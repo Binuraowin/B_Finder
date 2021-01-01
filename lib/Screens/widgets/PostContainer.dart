@@ -25,11 +25,14 @@ class PostContainer extends StatelessWidget {
   final int views;
   final String categoryId;
   final String providerImage;
+  final String district;
+  final String address;
+
 
   //
 //  User user2 = FirebaseAuth.instance.currentUser;
   DocumentSnapshot snapshot;
-   PostContainer({Key key, this.id, this.imageUrl, this.name, this.unitPrice, this.latitude, this.longitude, this.providerName, this.providerTel, this.units, this.description, this.date, this.providerId, this.likes, this.views, this.categoryId, this.providerImage}) : super(key: key);
+   PostContainer({Key key, this.id, this.imageUrl, this.name, this.unitPrice, this.latitude, this.longitude, this.providerName, this.providerTel, this.units, this.description, this.date, this.providerId, this.likes, this.views, this.categoryId, this.providerImage, this.district, this.address}) : super(key: key);
   void getData()async{ //use a Async-await function to get the data
 
     final data =  await FirebaseFirestore.instance.collection("users").doc(providerId).get(); //get the data
@@ -56,6 +59,7 @@ class PostContainer extends StatelessWidget {
                     providerimage: providerImage,
                     providerName: providerName,
                     date: date,
+                    address: address,
                   ),
                   const SizedBox(height: 4.0,),
                   Text(name,style: TextStyle(
@@ -108,8 +112,9 @@ class _postHeader  extends StatelessWidget {
   final String providerimage;
   final String providerName;
   final DateTime date;
+  final String address;
 
-  const _postHeader({Key key, this.providerimage, this.providerName, this.date}) : super(key: key);
+  const _postHeader({Key key, this.providerimage, this.providerName, this.date, this.address}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -124,6 +129,11 @@ class _postHeader  extends StatelessWidget {
                 Text(providerName,
                   style: const TextStyle(
                       fontWeight: FontWeight.w600
+                  ),
+                ),
+                Text(address,
+                  style:  TextStyle(color: Colors.grey[600],
+                      fontSize: 12.0
                   ),
                 ),
                 Row(
