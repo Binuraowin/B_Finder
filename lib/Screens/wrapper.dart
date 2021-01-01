@@ -1,5 +1,6 @@
 
 
+import 'package:b_finder/Screens/main_screens/postScreen.dart';
 import 'package:b_finder/models/authUser.dart';
 import 'package:b_finder/screens/authenticate/authenticate.dart';
 import 'package:b_finder/screens/home.dart';
@@ -14,7 +15,7 @@ class wrapper extends StatelessWidget {
    if(authuser == null){
      return Authenticate();
    }else{
-     return Home();
+     return ProductPage();
    }
     
   }
