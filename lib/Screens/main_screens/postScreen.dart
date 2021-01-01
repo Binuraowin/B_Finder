@@ -80,7 +80,10 @@ class _ProductPageState extends State<ProductPage> {
 
                             isDense: true,
                             onChanged: (valueSelectedByUser) {
-                              this.district = valueSelectedByUser;
+                              setState(() {
+                                this.district = valueSelectedByUser;
+                              });
+
                               print(district);
 //                              _onShopDropItemSelected(valueSelectedByUser);
                             },
@@ -99,7 +102,7 @@ class _ProductPageState extends State<ProductPage> {
                     ),
                   );
                 }),
-           district  == null ?  Expanded(
+            district  == null ?  Expanded(
              flex: 1,
              child: StreamBuilder<List<SubCategoryModel>>(
                stream: DatabaseService().getSubCategories(id),
