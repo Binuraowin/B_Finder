@@ -80,8 +80,19 @@ Stream<List<Product>> get products{
         snapshot.docs.map((doc) => CategoryModel.fromJson(doc.data())).toList());
   }
   Stream<List<SubCategoryModel>> getSubCategories(docId) {
-    return _db.collection('categories').doc('$docId').collection('subCategories').snapshots().map((snapshot) =>
+    return _db.collection('categories').doc(docId).collection('subCategories').snapshots().map((snapshot) =>
         snapshot.docs.map((doc) => SubCategoryModel.fromJson(doc.data())).toList());
+  }
+
+  void incrementlike(categoryId,docid){
+    FirebaseFirestore.instance.collection('categories').doc(categoryId).collection('subCategories').doc(docid).update({
+      "likes":FieldValue.increment(1),
+    });
+  }
+  void incrementViews(categoryId,docid){
+    FirebaseFirestore.instance.collection('categories').doc(categoryId).collection('subCategories').doc(docid).update({
+      "views":FieldValue.increment(1),
+    });
   }
 //Stream<List<CategoryModel>> get category{
 //  return categoryreference.snapshots().map(_categoryfoemSnapshots);

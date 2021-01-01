@@ -69,29 +69,29 @@ class _ProductListPageState extends State<ProductListPage> {
 //    id=catId;
 //    },
 //         ),
-    Padding(
-    padding: const EdgeInsets.symmetric(vertical: 20.0),
-    child: SizedBox(
-    height: 25,
-    child:StreamBuilder<List<CategoryModel>>(
-    stream: DatabaseService().getCategories(),
-    builder: (context, snapshot) {
-    return ListView.builder(
-    itemCount: snapshot.data.length,
-    scrollDirection: Axis.horizontal,
-    itemBuilder: (context, index) => buildCategory(
-    index,
-    snapshot.data[index].categoryName,
-    snapshot.data[index].id
-    )
-    );
-    },
-    ),
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 20.0),
+            child: SizedBox(
+              height: 25,
+              child:StreamBuilder<List<CategoryModel>>(
+                stream: DatabaseService().getCategories(),
+                builder: (context, snapshot) {
+                  return ListView.builder(
+                      itemCount: snapshot.data.length,
+                      scrollDirection: Axis.horizontal,
+                      itemBuilder: (context, index) => buildCategory(
+                          index,
+                          snapshot.data[index].categoryName,
+                          snapshot.data[index].id
+                      )
+                  );
+                },
+              ),
 
 
 
-    ),
-    ),
+            ),
+          ),
 
 //         SlectedCategory(),
           Expanded(

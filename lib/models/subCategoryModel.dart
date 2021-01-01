@@ -14,6 +14,9 @@ class SubCategoryModel{
   double unitPrice;
   int units;
   DateTime date;
+  int likes;
+  int views;
+  String providerImage;
 
 
   SubCategoryModel(
@@ -31,6 +34,9 @@ class SubCategoryModel{
         @required this.unitPrice,
         @required this.units,
         @required this.date,
+        @required this.likes,
+        @required this.views,
+        @required this.providerImage,
 
       } );
   factory SubCategoryModel.fromJson(Map<String, dynamic> json) {
@@ -48,6 +54,9 @@ class SubCategoryModel{
       unitPrice: json['unitPrice'] ?? '',
       units: json['units'] ?? '',
       date: json['date'].toDate() ?? '',
+      likes: json['likes'] ?? '',
+      views: json['views'] ?? '',
+      providerImage: json['providerImage'] ?? '',
 
     );
 

@@ -1,5 +1,6 @@
 import 'package:b_finder/Screens/details.dart';
 import 'package:b_finder/Screens/home.dart';
+import 'package:b_finder/Screens/main_screens/postScreen.dart';
 import 'package:b_finder/Screens/main_screens/productListPage.dart';
 import 'package:b_finder/Screens/widgets/category.dart';
 import 'package:flutter/material.dart';
@@ -16,7 +17,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-     home: ProductListPage(),
+     home: ProductPage(),
      debugShowCheckedModeBanner: false,
      
  

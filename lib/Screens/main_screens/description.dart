@@ -41,12 +41,13 @@ class _DescriptionPageState extends State<DescriptionPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: Text(productName),
+      ),
       body: Stack(
         fit: StackFit.expand,
         children: <Widget>[
-          Container(
-             child: IconButton(icon: Icon(Icons.arrow_back_rounded),),
-          ),
+
           Container(
             alignment: Alignment.topCenter,
 //            heightFactor: 0.7,
