@@ -45,6 +45,8 @@ class _DescriptionPageState extends State<DescriptionPage> {
     return Scaffold(
       appBar: AppBar(
         title: Text(productName),
+        elevation: 0.0,
+        backgroundColor: Colors.blue[100],
       ),
       body: Stack(
         fit: StackFit.expand,
