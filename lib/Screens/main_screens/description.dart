@@ -320,11 +320,11 @@ _launchURL(double lat, double lng) async {
   }
 }
 _launchPhone(int number) async {
-  final String googleMapsUrl = "tel:$number";
+  final String phoneNumber = "tel:0$number";
 
-  if (await canLaunch(googleMapsUrl)) {
-    await launch(googleMapsUrl);
+  if (await canLaunch(phoneNumber)) {
+    await launch(phoneNumber);
   } else {
-    throw 'Could not launch $googleMapsUrl';
+    throw 'Could not launch $phoneNumber';
   }
 }

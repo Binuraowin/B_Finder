@@ -72,15 +72,40 @@ class PostContainer extends StatelessWidget {
 
                 ],
               ),
-            ),
-            imageUrl != null ?
-            Padding(
-              padding: const EdgeInsets.symmetric(vertical: 8.0),
-              child: Image.network(imageUrl),
-              // CachedNetworkImage(imageUrl: post.imageUrl),
-            )
+            ),InkWell(
+              onTap: () {
+                DatabaseService().incrementViews(categoryId,id);
+                Navigator.push(
 
-                : const SizedBox.shrink(),
+                  context,
+                  // Create the SelectionScreen in the next step.
+                  MaterialPageRoute(builder: (context) => DescriptionPage(
+                    imageUrl: imageUrl,
+                    latitude: latitude,
+                    longitude: longitude,
+                    productName: name,
+                    providerTel: providerTel,
+                    units: units,
+                    description: description,
+                    unitPrice: unitPrice,
+                    providerName: providerName,
+                    date: date,
+                    address: address,
+                  )),
+
+
+                );
+              },
+              child:
+              imageUrl != null ?
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 8.0),
+                child: Image.network(imageUrl),
+                // CachedNetworkImage(imageUrl: post.imageUrl),
+              )
+
+                  : const SizedBox.shrink(),
+            ),
             Padding(padding: const EdgeInsets.symmetric(horizontal: 12.0),
               child: _postStats(
                 likes: likes,
