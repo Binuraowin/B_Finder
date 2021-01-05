@@ -250,7 +250,7 @@ class __postStatsState extends State<_postStats> {
 //            ),
             _PostButton(
               icon: Icon(
-                MdiIcons.shareOutline,
+                MdiIcons.eye,
                 color: Colors.grey[600],
                 size: 20.0,
               ),

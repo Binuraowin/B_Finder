@@ -19,6 +19,8 @@ class _ProductPageState extends State<ProductPage> {
   String id ;
   int selectedIndex = 0;
   String district;
+  bool loading = false;
+
 
   _ProductPageState(this.clubName);
   @override
@@ -46,11 +48,9 @@ class _ProductPageState extends State<ProductPage> {
                             snapshot.data[index].id
                         )
                     );
+
                   },
                 ),
-
-
-
               ),
             ),
             StreamBuilder<QuerySnapshot>(
