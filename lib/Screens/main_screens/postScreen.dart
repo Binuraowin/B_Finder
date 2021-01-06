@@ -1,4 +1,4 @@
-
+import "dart:async";
 import 'package:b_finder/models/categoryModel.dart';
 import 'package:b_finder/models/subCategoryModel.dart';
 import 'package:b_finder/services/database.dart';
@@ -8,27 +8,24 @@ import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class ProductPage extends StatefulWidget {
-  final String clubName;
 
-  const ProductPage({Key key, this.clubName}) : super(key: key);
   @override
-  _ProductPageState createState() => _ProductPageState(clubName);
+  _ProductPageState createState() => _ProductPageState();
 }
 
 class _ProductPageState extends State<ProductPage> {
-  final String clubName;
-  String id ;
+
+  String id;
   int selectedIndex = 0;
   String district;
   bool loading = false;
 
 
-  _ProductPageState(this.clubName);
+  _ProductPageState();
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
-
-
         body: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -54,6 +51,7 @@ class _ProductPageState extends State<ProductPage> {
                 ),
               ),
             ),
+
             StreamBuilder<QuerySnapshot>(
                 stream: FirebaseFirestore.instance.collection('district').snapshots(),
                 builder: (context, snapshot) {
@@ -103,13 +101,57 @@ class _ProductPageState extends State<ProductPage> {
                     ),
                   );
                 }),
-            district  == null ?  Expanded(
+            (id == null)?
+            Expanded(
+              flex: 1,
+              child: StreamBuilder<List<SubCategoryModel>>(
+                stream:DatabaseService().getSubCategorieswithoutid(),
+                builder: (context,snapshot){
+                  if(!snapshot.hasData){
+                    return Center(
+                      child: CircularProgressIndicator(),
+                    );
+                  }else {
+                    return ListView.builder(
+                        itemCount: snapshot.data.length,
+                        itemBuilder: (context, index) {
+                          return PostContainer(
+                            id: snapshot.data[index].listId,
+                            likes: snapshot.data[index].likes,
+                            views: snapshot.data[index].views,
+                            imageUrl: snapshot.data[index].imageUrl,
+                            longitude: snapshot.data[index].longitude,
+                            latitude: snapshot.data[index].latitude,
+                            providerName: snapshot.data[index].providerName,
+                            providerTel: snapshot.data[index].providerTel,
+                            units: snapshot.data[index].units,
+                            description: snapshot.data[index].description,
+                            unitPrice: snapshot.data[index].unitPrice,
+                            name: snapshot.data[index].name,
+                            date: snapshot.data[index].date,
+                            providerId: snapshot.data[index].providerId,
+                            categoryId: snapshot.data[index].categoryId,
+                            providerImage: snapshot.data[index].providerImage,
+                            district: snapshot.data[index].district,
+                            address: snapshot.data[index].address,
+
+                          );
+                        }
+                    );
+                  }
+                },
+              ),
+            )
+            :district   == null ?
+            Expanded(
              flex: 1,
              child: StreamBuilder<List<SubCategoryModel>>(
-               stream: DatabaseService().getSubCategories(id),
+               stream:DatabaseService().getSubCategories(id),
                builder: (context,snapshot){
-                 if(!snapshot.data.isNotEmpty){
-                   return Loading();
+                 if(!snapshot.hasData){
+                   return Center(
+                     child: CircularProgressIndicator(),
+                   );
                  }else {
                    return ListView.builder(
                        itemCount: snapshot.data.length,
@@ -146,44 +188,48 @@ class _ProductPageState extends State<ProductPage> {
              child: StreamBuilder<List<SubCategoryModel>>(
                stream: DatabaseService().getSortedSubCategories(id, district),
                builder: (context,snapshot){
-                      if(!snapshot.data.isNotEmpty){
-                      return Loading();
-                      }else {
-                        return ListView.builder(
-                            itemCount: snapshot.data.length,
-                            itemBuilder: (context, index) {
-                              return PostContainer(
-                                id: snapshot.data[index].listId,
-                                likes: snapshot.data[index].likes,
-                                views: snapshot.data[index].views,
-                                imageUrl: snapshot.data[index].imageUrl,
-                                longitude: snapshot.data[index].longitude,
-                                latitude: snapshot.data[index].latitude,
-                                providerName: snapshot.data[index].providerName,
-                                providerTel: snapshot.data[index].providerTel,
-                                units: snapshot.data[index].units,
-                                description: snapshot.data[index].description,
-                                unitPrice: snapshot.data[index].unitPrice,
-                                name: snapshot.data[index].name,
-                                date: snapshot.data[index].date,
-                                providerId: snapshot.data[index].providerId,
-                                categoryId: snapshot.data[index].categoryId,
-                                providerImage: snapshot.data[index]
-                                    .providerImage,
-                                district: snapshot.data[index].district,
-                                address: snapshot.data[index].address,
+                    if(!snapshot.hasData){
+                    return Center(
+                    child: CircularProgressIndicator(),
+                    );
+                    }else {
+                      return ListView.builder(
+                          itemCount: snapshot.data.length,
+                          itemBuilder: (context, index) {
+                            return PostContainer(
+                              id: snapshot.data[index].listId,
+                              likes: snapshot.data[index].likes,
+                              views: snapshot.data[index].views,
+                              imageUrl: snapshot.data[index].imageUrl,
+                              longitude: snapshot.data[index].longitude,
+                              latitude: snapshot.data[index].latitude,
+                              providerName: snapshot.data[index].providerName,
+                              providerTel: snapshot.data[index].providerTel,
+                              units: snapshot.data[index].units,
+                              description: snapshot.data[index].description,
+                              unitPrice: snapshot.data[index].unitPrice,
+                              name: snapshot.data[index].name,
+                              date: snapshot.data[index].date,
+                              providerId: snapshot.data[index].providerId,
+                              categoryId: snapshot.data[index].categoryId,
+                              providerImage: snapshot.data[index]
+                                  .providerImage,
+                              district: snapshot.data[index].district,
+                              address: snapshot.data[index].address,
 
-                              );
-                            }
-                        );
-                      }
+                            );
+                          }
+                      );
+                    }
                },
              ),
            ),
 
-
           ],
-        ));
+        )
+
+    );
+
   }
 
   Widget buildCategory(int index,String categoryName,String catId) {
@@ -215,6 +261,43 @@ class _ProductPageState extends State<ProductPage> {
           ],
         ),
       ),
+    );
+  }
+
+  Future<void> _shoeerror() async {
+    return showDialog<void>(
+      context: context,
+      barrierDismissible: false, // user must tap button!
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text('Thank you For Join with Us !'),
+          content: SingleChildScrollView(
+            child: ListBody(
+              children: <Widget>[
+                Row(
+                  children: [
+//                    Icon(Icons.error_outline,color: Colors.red,),
+                    Text('Select the Category to proceed '),
+                 //   Text(' and Location',style: TextStyle(color: Colors.red),),
+                  ],
+                )
+
+
+              ],
+            ),
+          ),
+          actions: <Widget>[
+            TextButton(
+              child: Text('OK'),
+              onPressed: () {
+                setState(() {
+                  id=' RN62p5KZAtk48mGL2n66';
+                });
+              },
+            ),
+          ],
+        );
+      },
     );
   }
 }

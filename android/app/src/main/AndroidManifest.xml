@@ -8,7 +8,7 @@
     <application
         android:name="io.flutter.app.FlutterApplication"
         android:label="BFINDER"
-        android:icon="@mipmap/pd">
+        android:icon="@mipmap/ed2">
         <activity
             android:name=".MainActivity"
             android:launchMode="singleTop"
