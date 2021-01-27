@@ -1,6 +1,7 @@
 import "dart:async";
 import 'package:b_finder/models/categoryModel.dart';
 import 'package:b_finder/models/subCategoryModel.dart';
+import 'package:b_finder/services/auth.dart';
 import 'package:b_finder/services/database.dart';
 import 'package:b_finder/Screens/widgets/PostContainer.dart';
 import 'package:b_finder/shared/loading.dart';
@@ -19,17 +20,40 @@ class _ProductPageState extends State<ProductPage> {
   int selectedIndex = 0;
   String district;
   bool loading = false;
-
+  final AuthService _auth = AuthService();
 
   _ProductPageState();
   @override
   Widget build(BuildContext context) {
 
     return Scaffold(
+      appBar: AppBar(
+//        title:  Text('B FINDER',
+//          style: TextStyle(
+//              fontFamily: 'Monteserrat',
+//              color: Colors.blue[200],
+//              fontWeight: FontWeight.bold,
+//              fontSize: 25.0
+//          ),
+//        ),
+
+        elevation: 0.0,
+        backgroundColor: Colors.transparent,
+        actions: [
+          FlatButton.icon(
+              onPressed: () async{
+                await _auth.signOut();
+              },
+              icon: Icon(Icons.person , color: Colors.grey[500],),
+              label: Text('logout',
+                style: TextStyle(color: Colors.grey[500]),
+              )
+          ),
+        ],
+      ),
         body: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            SizedBox(height: 30.0,),
             Padding(
               padding: const EdgeInsets.symmetric(vertical: 20.0),
               child: SizedBox(

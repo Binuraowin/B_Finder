@@ -1,4 +1,5 @@
 import 'package:b_finder/Screens/main_screens/description.dart';
+import 'package:b_finder/services/auth.dart';
 import 'package:b_finder/services/database.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -28,7 +29,6 @@ class PostContainer extends StatelessWidget {
   final String district;
   final String address;
 
-
   //
 //  User user2 = FirebaseAuth.instance.currentUser;
   DocumentSnapshot snapshot;
@@ -50,6 +50,7 @@ class PostContainer extends StatelessWidget {
         color: Colors.white,
         child: Column(
           children: <Widget>[
+
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 12.0),
               child: Column(
